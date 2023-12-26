@@ -7,7 +7,7 @@ const registerUser = asyncHandler(async (request, response) => {
 
   if (!name || !email || !password) {
     response.status(400);
-    throw new Error("Please ensure all fields are filled out");
+    throw new Error("Please ensure that all fields are filled out");
   }
 
   const userExists = await User.findOne({ email });
