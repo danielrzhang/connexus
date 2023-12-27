@@ -57,4 +57,20 @@ const authUser = asyncHandler(async (request, response) => {
   }
 });
 
-module.exports = { registerUser, authUser };
+const allUsers = asyncHandler(async (request, response) => {
+  const keyword = request.query.search
+    ? {
+        $or: [
+          { name: { $regex: request.query.search, $options: "i" } },
+          { email: { $regex: request.query.search, $options: "i" } },
+        ],
+      }
+    : {};
+
+  const users = await User.find(keyword).find({
+    _id: { $ne: request.user._id },
+  });
+  response.send(users);
+});
+
+module.exports = { registerUser, authUser, allUsers };
