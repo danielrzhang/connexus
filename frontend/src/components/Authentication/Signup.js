@@ -185,7 +185,7 @@ const Signup = () => {
         </InputGroup>
       </FormControl>
 
-      <FormControl id="pic">
+      <FormControl id="picture">
         <FormLabel>Upload your profile picture</FormLabel>
         <Input
           type="file"
